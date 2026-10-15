@@ -17,7 +17,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(
+    origins = {"http://localhost:5173",
+        "https://neighbour-hub.netlify.app"
+    })
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
