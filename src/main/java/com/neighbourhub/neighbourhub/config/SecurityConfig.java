@@ -44,7 +44,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5173",
-                        "http://127.0.0.1:5173"
+                        "http://127.0.0.1:5173",
+                        "https://neighbour-hub.netlify.app"
                 )
         );
 
@@ -99,37 +100,39 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers(
-                                "/api/auth/register",
-                                "/api/auth/login"
-                        ).permitAll()
+    .requestMatchers(
+        "/api/auth/register",
+        "/api/auth/login"
+    ).permitAll()
 
-                        .requestMatchers(
-                                "/api/shops",
-                                "/api/shops/**",
+    .requestMatchers(
+        "/api/shops",
+        "/api/shops/**",
 
-                                "/api/products",
-                                "/api/products/**",
+        "/api/products",
+        "/api/products/**",
 
-                                "/api/services",
-                                "/api/services/**",
+        "/api/services",
+        "/api/services/**",
 
-                                "/api/service-requests",
-                                "/api/service-requests/**",
+        "/api/service-requests",
+        "/api/service-requests/**",
 
-                                "/api/wishlist",
-                                "/api/wishlist/**",
+        "/api/wishlist",
+        "/api/wishlist/**",
 
-                                "/api/dashboard",
-                                "/api/dashboard/**"
-                        ).permitAll()
+        "/api/dashboard",
+        "/api/dashboard/**"
+    ).permitAll()
 
-                        .requestMatchers(
-                                "/api/users/me"
-                        ).authenticated()
+    .requestMatchers("/api/test").permitAll()
 
-                        .anyRequest().authenticated()
-                )
+    .requestMatchers(
+        "/api/users/me"
+    ).authenticated()
+
+    .anyRequest().authenticated()
+)
 
                 .addFilterBefore(
                         jwtAuthenticationFilter,
